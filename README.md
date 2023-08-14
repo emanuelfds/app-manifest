@@ -37,7 +37,7 @@ Para maiores informações, acessar o site do [Flask](https://flask.palletsproje
 
 ## A Aplicação
 
-Será implantada uma aplicação simples que exibirá o nome do pod onde está sendo executada. Será exposta na porta **`5000`** e o serviço irá expor o aplicativo na porta **`80`** e estará acessível por meio do NodePort **`30002`**.
+Será implantada uma aplicação simples que exibirá o nome do pod e o seu ip onde está sendo executada. Será exposta na porta **`5000`** e o serviço irá expor o aplicativo na porta **`80`** e estará acessível por meio do NodePort **`30002`**.
 
 <div align="left">
 
