@@ -16,7 +16,7 @@ spec:
       serviceAccountName: my-app
       containers:
       - name: myapp
-        image: emanuelfds/app:v37
+        image: emanuelfds/app:v38
         ports:
         - containerPort: 5000
         resources:
