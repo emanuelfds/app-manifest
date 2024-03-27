@@ -12,7 +12,7 @@ spec:
     metadata:
       labels:
         app: myapp
-        version: 193
+        version: "193"
     spec:
       serviceAccountName: my-app
       containers:
