@@ -12,8 +12,12 @@ spec:
     metadata:
       labels:
         app: myapp
+<<<<<<< HEAD
         environment: 
         version: 
+=======
+        version: 1.0.7
+>>>>>>> 9b596ef (Update main.yaml)
     spec:
       serviceAccountName: my-app
       containers:
