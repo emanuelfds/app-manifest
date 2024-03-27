@@ -12,13 +12,13 @@ spec:
     metadata:
       labels:
         app: myapp
-        environment: production
-        version: 1.0.7
+        environment: 
+        version: 
     spec:
       serviceAccountName: my-app
       containers:
       - name: myapp
-        image: emanuelfds/app:v1.0.7
+        image: emanuelfds/app:v184
         ports:
         - containerPort: 5000
         resources:
