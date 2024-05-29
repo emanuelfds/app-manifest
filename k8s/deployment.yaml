@@ -17,14 +17,10 @@ spec:
       serviceAccountName: my-app
       containers:
       - name: myapp
-<<<<<<< HEAD
         image: ghcr.io/emanuelfds/app:1.1.7
-=======
-        image: ghcr.io/emanuelfds/app:1.1.5
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
       - name: ghcr-login-secret      
->>>>>>> 111968a (adicionando a secret para baixar imagens no ghcr)
         ports:
         - containerPort: 5000
         resources:
