@@ -12,12 +12,12 @@ spec:
     metadata:
       labels:
         app: myapp
-        version: "1.1.5"
+        version: "1.1.7"
     spec:
       serviceAccountName: my-app
       containers:
       - name: myapp
-        image: ghcr.io/emanuelfds/app:1.1.5
+        image: ghcr.io/emanuelfds/app:1.1.7
         ports:
         - containerPort: 5000
         resources:
