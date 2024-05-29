@@ -15,12 +15,12 @@ spec:
         version: "1.1.7"
     spec:
       serviceAccountName: my-app
+      imagePullSecrets:
+      - name: ghcr-login-secret
       containers:
       - name: myapp
         image: ghcr.io/emanuelfds/app:1.1.7
         imagePullPolicy: IfNotPresent
-      imagePullSecrets:
-      - name: ghcr-login-secret      
         ports:
         - containerPort: 5000
         resources:
