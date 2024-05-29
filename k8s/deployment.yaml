@@ -14,7 +14,7 @@ spec:
         app: myapp
         version: "1.1.7"
     spec:
-      serviceAccountName: my-app
+      serviceAccountName: sa-myapp
       imagePullSecrets:
       - name: ghcr-login-secret
       containers:
