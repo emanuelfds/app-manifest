@@ -12,14 +12,14 @@ spec:
     metadata:
       labels:
         app: myapp
-        version: "1.1.41"
+        version: "1.1.42"
     spec:
       serviceAccountName: sa-myapp
       imagePullSecrets:
       - name: ghcr-login-secret
       containers:
       - name: myapp
-        image: ghcr.io/emanuelfds/app:1.1.41
+        image: ghcr.io/emanuelfds/app:1.1.42
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
