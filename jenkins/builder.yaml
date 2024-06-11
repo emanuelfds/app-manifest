@@ -3,8 +3,8 @@ kind: Pod
 spec:
   containers:
   - name: kubectl
-    # image: gru.ocir.io/grrgazcoqsuy/mutant-pipeline-base:alpine-k8s
-    image: emanuelfds/kubectl:1.30.0
+    image: gru.ocir.io/grrgazcoqsuy/mutant-pipeline-base:alpine-k8s
+    # image: emanuelfds/kubectl:1.30.0
     command:
     - /bin/cat
     tty: true  
