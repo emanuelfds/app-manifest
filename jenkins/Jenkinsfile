@@ -1,0 +1,103 @@
+pipeline {
+  agent {
+    kubernetes {
+      yamlFile 'jenkins/builder.yaml'
+    }
+  }
+  parameters {
+    choice(name: 'apps', choices: ['app-manifest' ], description: 'Deploy App')
+  }
+  environment {
+    infra = 'prd'
+    folder = 'k8s'
+  }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '15'))
+  }
+
+  stages {
+    stage('DEPLOY APP') {
+      steps {
+        script {
+          if (params.apps == "app") {
+            container('kubectl') {
+              echo "Run kubectl APP manifests ${params.apps}"
+              git branch: 'main', credentialsId: 'user_cicd_git', url: "git@github.com:emanuelfds/${params.apps}.git"  
+              
+              withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                dir("./${folder}/") {
+                  echo "Creating Namespace"
+                  sh("kubectl apply -f 01-namespace.yaml")
+                  
+                  echo "Creating ClusterRole and ClusterRoleBinding"
+                  sh("kubectl apply -f 02-clusterRole.yaml")
+                  sh("kubectl apply -f 03-clusterRoleBinding.yaml")
+
+                  sleep(secs: 5)
+
+                  echo "Apply App Deployment"
+                  sh("kubectl apply -f 04-deployment.yaml")
+
+                  echo "Creating Secret, Service and ServiceAccount"
+                  sh("kubectl apply -f 05-secret.yaml")
+                  sh("kubectl apply -f 06-service.yaml")
+                  sh("kubectl apply -f 07-serviceAccountt.yaml")                 
+                  
+                }
+              }
+            }
+          } 
+          // else if (params.apps == "mautic-web") {
+          //   container('kubectl') {
+          //     echo "Run kubectl MAUTIC web"
+          //     git branch: 'tim-rentabilizacao', credentialsId: 'user_cicd_git', url: "git@bitbucket.org:unearsa/mautic-mutantrogue.git"
+              
+          //     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+          //       dir("./deploy/${infra}/") {
+
+          //         sh("kubectl apply -f 04-mautic-web-deployment.yaml")
+                  
+          //       }
+          //     }
+          //   }
+          // }
+          // else if (params.apps == "mautic-cron") {
+          //   container('kubectl') {
+          //     echo "Run kubectl MAUTIC cron"
+          //     git branch: 'tim-rentabilizacao', credentialsId: 'user_cicd_git', url: "git@bitbucket.org:unearsa/mautic-mutantrogue.git"
+              
+          //     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+          //       dir("./deploy/${infra}/") {
+          //         sh("kubectl apply -f 01-mautic-configmap.yaml")
+          //         sh("kubectl apply -f 05-mautic-cron-deployment.yaml")
+                  
+          //       }
+          //     }
+          //   }
+          // } 
+          // else if (params.apps == "mautic-worker") {
+          //   container('kubectl') {
+          //     echo "Run kubectl MAUTIC worker"
+          //     git branch: 'tim-rentabilizacao', credentialsId: 'user_cicd_git', url: "git@bitbucket.org:unearsa/mautic-mutantrogue.git"
+              
+          //     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+          //       dir("./deploy/${infra}/") {
+                
+          //         sh("kubectl apply -f 06-mautic-worker-deployment.yaml")
+                  
+          //       }
+          //     }
+          //   }
+          // }
+        }
+      }
+    }
+  }
+  
+  post {
+    cleanup {
+      cleanWs deleteDirs: true, notFailBuild: true
+    }
+  }
+}
+

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: kubectl
+    # image: gru.ocir.io/grrgazcoqsuy/mutant-pipeline-base:alpine-k8s
+    image: emanuelfds/kubectl:1.30.0
+    command:
+    - /bin/cat
+    tty: true  
+  # tolerations:
+  #   - key: "monitoringonly"
+  #     operator: "Equal"
+  #     value: "true"
+  #     effect: "PreferNoSchedule"
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: apps
+  #           operator: In
+  #           values:
+  #           - monitoring
