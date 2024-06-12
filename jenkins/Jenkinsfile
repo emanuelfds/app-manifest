@@ -41,7 +41,7 @@ pipeline {
                   echo "Creating Secret, Service and ServiceAccount"
                   sh("kubectl apply -f 05-secret.yaml")
                   sh("kubectl apply -f 06-service.yaml")
-                  sh("kubectl apply -f 07-serviceAccountt.yaml")                 
+                  sh("kubectl apply -f 07-serviceAccount.yaml")                 
                   
                 }
               }
