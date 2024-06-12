@@ -19,7 +19,7 @@ pipeline {
     stage('DEPLOY APP') {
       steps {
         script {
-          if (params.apps == "app") {
+          if (params.apps == "app-manifest") {
             container('kubectl') {
               echo "Run kubectl APP manifests ${params.apps}"
               git branch: 'main', credentialsId: 'user_cicd_git', url: "git@github.com:emanuelfds/${params.apps}.git"  
