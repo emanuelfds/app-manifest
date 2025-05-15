@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cm-myapp2
-  namespace: myapp2
+  name: cm-myapp
+  namespace: myapp
   labels:
-    app: myapp2
+    app: myapp
 data:
   APP_CONFIG: "develop"
   LOG_LEVEL: "info"

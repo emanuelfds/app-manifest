@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp2
-  namespace: myapp2
+  name: myapp
+  namespace: myapp
 spec:
   selector:
     matchLabels:
-      app: myapp2
+      app: myapp
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -16,17 +16,16 @@ spec:
   template:
     metadata:
       labels:
-        app: myapp2
+        app: myapp
         version: "v1.0.29"
     spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
-      serviceAccountName: sa-myapp2
+      serviceAccountName: sa-myapp
       containers:
-      - name: myapp2
-        image: emanuelfds/myapp-teste:v1.73
-        # image: emanuelfds/myapp:v1.0.34
+      - name: myapp
+        image: emanuelfds/app:1.2.2
         imagePullPolicy: IfNotPresent
         # Descomentar caso queira executar o "stress-ng"
         # securityContext:      
@@ -34,7 +33,7 @@ spec:
         #     runAsNonRoot: true
         #     runAsUser: 1000
         ports:
-        - name: myapp2
+        - name: myapp
           containerPort: 5000
           protocol: TCP
         livenessProbe:
@@ -62,27 +61,27 @@ spec:
           - name: APP_CONFIG
             valueFrom:
               configMapKeyRef:
-                name: cm-myapp2
+                name: cm-myapp
                 key: APP_CONFIG   
           - name: LOG_LEVEL
             valueFrom:
               configMapKeyRef:
-                name: cm-myapp2
+                name: cm-myapp
                 key: LOG_LEVEL
           - name: CPU_THRESHOLD
             valueFrom:
               configMapKeyRef:
-                name: cm-myapp2
+                name: cm-myapp
                 key: CPU_THRESHOLD
           - name: MEMORY_THRESHOLD
             valueFrom:
               configMapKeyRef:
-                name: cm-myapp2
+                name: cm-myapp
                 key: MEMORY_THRESHOLD
           - name: APP_VERSION
             valueFrom:
               configMapKeyRef:
-                name: cm-myapp2
+                name: cm-myapp
                 key: APP_VERSION
       # tolerations:
       #   - key: "servicesonly"
