@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-myapp2
+  namespace: myapp2
+  labels:
+    app: myapp2
+data:
+  APP_CONFIG: "develop"
+  LOG_LEVEL: "info"
+  CPU_THRESHOLD: "60"
+  MEMORY_THRESHOLD: "60"
+  APP_VERSION: "v1.36"
