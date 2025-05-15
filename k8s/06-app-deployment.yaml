@@ -23,6 +23,8 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       serviceAccountName: sa-myapp
+      imagePullSecrets:
+      - name: ghcr-login-secret
       containers:
       - name: myapp
         image: ghcr.io/emanuelfds/app:1.2.2
