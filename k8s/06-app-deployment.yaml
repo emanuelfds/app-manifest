@@ -25,7 +25,7 @@ spec:
       serviceAccountName: sa-myapp
       containers:
       - name: myapp
-        image: emanuelfds/app:1.2.2
+        image: ghcr.io/emanuelfds/app:1.2.2
         imagePullPolicy: IfNotPresent
         # Descomentar caso queira executar o "stress-ng"
         # securityContext:      
