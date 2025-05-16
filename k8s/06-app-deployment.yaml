@@ -17,7 +17,7 @@ spec:
     metadata:
       labels:
         app: myapp
-        version: "1.2.3"
+        version: "1.2.4"
     spec:
       securityContext:
         seccompProfile:
@@ -27,7 +27,7 @@ spec:
       - name: ghcr-login-secret
       containers:
       - name: myapp
-        image: ghcr.io/emanuelfds/app:1.2.3
+        image: ghcr.io/emanuelfds/app:1.2.4
         imagePullPolicy: IfNotPresent
         # Descomentar caso queira executar o "stress-ng"
         # securityContext:      
